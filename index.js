@@ -3,13 +3,23 @@ const btns = document.querySelectorAll(".drum");
 for (let i = 0; i < btns.length; i++) {
   btns[i].addEventListener("click", function () {
     playSound(this.innerText);
+    ButtonAnimation(this.innerText);
   });
 }
 
 // keyBoard Event
-document.addEventListener("keypress", function (e) {
-  playSound(e.key);
+document.addEventListener("keypress", function (event) {
+  playSound(event.key);
+  ButtonAnimation(event.key);
 });
+
+function ButtonAnimation(currentKey) {
+  var key = document.querySelector("." + currentKey);
+  key.classList.add("pressed");
+  setTimeout(() => {
+    key.classList.remove("pressed");
+  }, 200);
+}
 
 function playSound(key) {
   switch (key) {
